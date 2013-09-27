@@ -11,11 +11,8 @@ func BoardSpec(c gospec.Context) {
     c.Expect(board.width, Equals, 7)
     c.Expect(board.height, Equals, 6)
   })
-  c.Specify("It should be empty", func() {
-    c.Expect(true, gospec.IsFalse)
-  })
   c.Specify("It should have width * height indices", func() {
-    c.Expect(true, gospec.IsFalse)
+    c.Expect(len(NewDefaultBoard().Indices()), Equals, 42)
   })
   c.Specify("It should return true for empty check", func() {
     c.Expect(true, gospec.IsFalse)
