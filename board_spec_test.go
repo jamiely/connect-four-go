@@ -7,7 +7,9 @@ import (
 
 func BoardSpec(c gospec.Context) {
   c.Specify("It should have a size of 7 columns and 6 rows", func() {
-    c.Expect(true, gospec.IsFalse)
+    board := NewDefaultBoard()
+    c.Expect(board.width, Equals, 7)
+    c.Expect(board.height, Equals, 6)
   })
   c.Specify("It should be empty", func() {
     c.Expect(true, gospec.IsFalse)
