@@ -3,7 +3,7 @@ package connect_four
 type Marker int
 
 const (
-  Empty Marker = iota
+  EMPTY Marker = iota
   A
   B
 )
@@ -21,6 +21,9 @@ func NewBoard(width, height int) *Board {
   spaces := make([][]Marker, height)
   for i := range spaces {
     spaces[i] = make([]Marker, width)
+    for j := range spaces[i] {
+      spaces[i][j] = EMPTY
+    }
   }
   return &Board{spaces: spaces, width: width, height: height}
 }
@@ -35,12 +38,32 @@ func NewIndex(r,c int) *Index {
 
 func (board *Board) Indices() []*Index {
   indices := make([]*Index, board.width * board.height)
+  counter := 0
   for i := 0; i < board.height; i++ {
     for j := 0; j < board.width; j++ {
-      indices[i * j + j] = NewIndex(i, j)
+      indices[counter] = NewIndex(i, j)
+      counter = counter + 1
     }
   }
   return indices
+}
+
+func (board *Board) SetMarkerAt(index *Index, marker Marker) {
+  board.spaces[index.row][index.column] = marker
+}
+
+func (board *Board) MarkerAt(index *Index) Marker {
+  return board.spaces[index.row][index.column]
+}
+
+func (board *Board) IsEmpty() bool{
+  indices := board.Indices()
+  accumulator := true
+  for i := range indices {
+    index := indices[i]
+    accumulator = accumulator && board.MarkerAt(index) == EMPTY
+  }
+  return accumulator
 }
 
 

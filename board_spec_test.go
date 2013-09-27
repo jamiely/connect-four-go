@@ -15,7 +15,10 @@ func BoardSpec(c gospec.Context) {
     c.Expect(len(NewDefaultBoard().Indices()), Equals, 42)
   })
   c.Specify("It should return true for empty check", func() {
-    c.Expect(true, gospec.IsFalse)
+    board := NewDefaultBoard()
+    c.Expect(board.IsEmpty(), IsTrue)
+    board.SetMarkerAt(NewIndex(0,0), A)
+    c.Expect(board.IsEmpty(), IsFalse)
   })
   c.Specify("It should keep track of markers at indices", func() {
     c.Expect(true, gospec.IsFalse)
