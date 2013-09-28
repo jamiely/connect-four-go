@@ -21,10 +21,23 @@ func BoardSpec(c gospec.Context) {
     c.Expect(board.IsEmpty(), IsFalse)
   })
   c.Specify("It should keep track of markers at indices", func() {
-    c.Expect(true, gospec.IsFalse)
+    board := NewDefaultBoard()
+    index1 := NewIndex(0, 0)
+    index2 := NewIndex(0, 1)
+    board.SetMarkerAt(index1, A)
+    board.SetMarkerAt(index2, B)
+    c.Expect(board.MarkerAt(index1), Equals, A)
   })
   c.Specify("It should know when there are no moves left", func() {
-    c.Expect(true, gospec.IsFalse)
+    board := NewDefaultBoard()
+    c.Expect(board.HasMoves(), IsTrue)
+
+    indices := board.Indices()
+    for i:= range indices {
+      board.SetMarkerAt(indices[i], A)
+    }
+
+    c.Expect(board.HasMoves(), IsFalse)
   })
 }
 

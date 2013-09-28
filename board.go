@@ -66,4 +66,14 @@ func (board *Board) IsEmpty() bool{
   return accumulator
 }
 
+func (board *Board) HasMoves() bool {
+  indices := board.Indices()
+  accumulator := true
+  for i := range indices {
+    index := indices[i]
+    accumulator = accumulator && board.MarkerAt(index) != EMPTY
+  }
+  return !accumulator
+}
+
 
