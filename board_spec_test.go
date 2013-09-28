@@ -1,11 +1,10 @@
 package connect_four
 
 import (
-	"github.com/orfjackal/gospec/src/gospec"
 	. "github.com/orfjackal/gospec/src/gospec"
 )
 
-func BoardSpec(c gospec.Context) {
+func BoardSpec(c Context) {
   c.Specify("It should have a size of 7 columns and 6 rows", func() {
     board := NewDefaultBoard()
     c.Expect(board.width, Equals, 7)

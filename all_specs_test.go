@@ -8,5 +8,6 @@ import (
 func TestAllSpecs(t *testing.T) {
   r := gospec.NewRunner()
   r.AddSpec(BoardSpec)
+  r.AddSpec(GameSpec)
   gospec.MainGoTest(r, t)
 }
