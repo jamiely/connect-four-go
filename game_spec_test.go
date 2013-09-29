@@ -5,11 +5,14 @@ import (
 )
 
 func GameSpec(c Context) {
+  origin := NewIndex(0, 0)
+  east := NewDirection(1, 0)
+
   c.Specify("It should have directions.", func() {
     c.Expect(len(NewGame().directions), Equals, 8)
   })
   c.Specify("should return true when checkPosition is called with 0 steps", func() {
-    c.Expect(true, IsFalse)
+    c.Expect(NewGame().CheckPosition(origin, A, east, 0), IsTrue)
   })
   c.Specify("should return true when checkPosition is called with an index and the marker at that index and 1 step", func() {
     c.Expect(true, IsFalse)

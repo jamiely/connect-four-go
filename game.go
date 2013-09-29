@@ -32,3 +32,34 @@ func NewDirection(x int, y int) *Direction {
   return &Direction{x: x, y: y}
 }
 
+func (game *Game) IndexValid(index *Index) bool {
+  return false;
+}
+
+func (game *Game) CheckPosition(index *Index, marker Marker, 
+  direction *Direction, steps int) bool {
+  if steps == 0 {
+    return true
+  } else if game.CheckMarkerAt(index, marker) {
+    return game.CheckPosition(IndexInDirection(index, direction),
+                              marker,
+                              direction,
+                              steps - 1)
+  } else {
+    return false
+  }
+}
+
+func (game *Game) CheckMarkerAt(index *Index, marker Marker) bool {
+  return game.IndexValid(index) && game.MarkerAt(index) == marker
+}
+
+func IndexInDirection(index *Index, dir *Direction) *Index {
+  return NewIndex(index.row + dir.y, index.column + dir.x)
+}
+
+func (game *Game) MarkerAt(index *Index) Marker {
+  return game.board.MarkerAt(index)
+}
+
+
