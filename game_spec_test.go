@@ -64,11 +64,15 @@ func GameSpec(c Context) {
     game.DropIntoColumn(A, 3)
     c.Expect(game.CheckPosition(index_1_0, A, east, 4), IsTrue)
   })
-  c.Specify("should be a player's win whenever there are four in a row", func() {
-    c.Expect(true, IsFalse)
-  })
   c.Specify("not allow a move to be made in a full column", func() {
-    c.Expect(true, IsFalse)
+    game := NewGame()
+    c.Expect(game.DropIntoColumn(A, 0), Not(IsNil))
+    c.Expect(game.DropIntoColumn(A, 0), Not(IsNil))
+    c.Expect(game.DropIntoColumn(A, 0), Not(IsNil))
+    c.Expect(game.DropIntoColumn(A, 0), Not(IsNil))
+    c.Expect(game.DropIntoColumn(A, 0), Not(IsNil))
+    c.Expect(game.DropIntoColumn(A, 0), Not(IsNil))
+    c.Expect(game.DropIntoColumn(A, 0), IsNil)
   })
 }
 
