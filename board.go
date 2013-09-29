@@ -76,4 +76,10 @@ func (board *Board) HasMoves() bool {
   return !accumulator
 }
 
+func (board *Board) IndexValid(index *Index) bool {
+  return index.column < board.width &&
+         index.column >= 0 &&
+         index.row < board.height &&
+         index.row >= 0
+}
 

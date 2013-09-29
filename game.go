@@ -33,7 +33,7 @@ func NewDirection(x int, y int) *Direction {
 }
 
 func (game *Game) IndexValid(index *Index) bool {
-  return false;
+  return game.board.IndexValid(index)
 }
 
 func (game *Game) CheckPosition(index *Index, marker Marker, 
@@ -62,4 +62,23 @@ func (game *Game) MarkerAt(index *Index) Marker {
   return game.board.MarkerAt(index)
 }
 
+func (game *Game) DropIntoColumn(marker Marker, column int) *Index {
+  index := game.FirstEmptyRowIn(column)
+  if index == nil { 
+    return nil
+  }
+
+  game.board.SetMarkerAt(index, marker)
+  return index
+}
+
+func (game *Game) FirstEmptyRowIn(column int) *Index {
+  for i := 0; i < game.board.height; i ++ {
+    index := NewIndex(i, column)
+    if game.CheckMarkerAt(index, EMPTY) {
+      return index
+    }
+  }
+  return nil
+}
 
