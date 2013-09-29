@@ -74,5 +74,23 @@ func GameSpec(c Context) {
     c.Expect(game.DropIntoColumn(A, 0), Not(IsNil))
     c.Expect(game.DropIntoColumn(A, 0), IsNil)
   })
+  c.Specify("toggle marker after move", func() {
+    game := NewGame()
+    c.Expect(game.current, Equals, A)
+    c.Expect(game.Move(0), IsTrue)
+    c.Expect(game.current, Equals, B)
+    c.Expect(game.Move(0), IsTrue)
+    c.Expect(game.current, Equals, A)
+    c.Expect(game.Move(0), IsTrue)
+    c.Expect(game.current, Equals, B)
+    c.Expect(game.Move(0), IsTrue)
+    c.Expect(game.current, Equals, A)
+    c.Expect(game.Move(0), IsTrue)
+    c.Expect(game.current, Equals, B)
+    c.Expect(game.Move(0), IsTrue)
+    c.Expect(game.current, Equals, A)
+    c.Expect(game.Move(0), IsFalse)
+    c.Expect(game.current, Equals, A)
+  })
 }
 

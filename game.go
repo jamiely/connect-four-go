@@ -7,6 +7,7 @@ type Direction struct {
 type Game struct {
   board *Board
   directions []*Direction
+  current Marker
 }
 
 func NewDirections() []*Direction {
@@ -25,7 +26,9 @@ func NewDirections() []*Direction {
 }
 
 func NewGame() *Game {
-  return &Game{board: NewDefaultBoard(), directions: NewDirections()}
+  return &Game{board: NewDefaultBoard(), 
+               directions: NewDirections(),
+               current: A}
 }
 
 func NewDirection(x int, y int) *Direction {
@@ -80,5 +83,22 @@ func (game *Game) FirstEmptyRowIn(column int) *Index {
     }
   }
   return nil
+}
+
+func (game *Game) ToggleMarker() Marker {
+  if game.current == A { 
+    game.current = B
+  } else { 
+    game.current = A
+  }
+  return game.current
+}
+
+func (game *Game) Move(column int) bool {
+  result := game.DropIntoColumn(game.current, column) != nil
+  if result {
+    game.ToggleMarker()
+  }
+  return result
 }
 
