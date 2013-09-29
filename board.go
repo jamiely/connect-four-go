@@ -77,7 +77,8 @@ func (board *Board) HasMoves() bool {
 }
 
 func (board *Board) IndexValid(index *Index) bool {
-  return index.column < board.width &&
+  return index != nil &&
+         index.column < board.width &&
          index.column >= 0 &&
          index.row < board.height &&
          index.row >= 0

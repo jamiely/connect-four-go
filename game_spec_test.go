@@ -92,5 +92,18 @@ func GameSpec(c Context) {
     c.Expect(game.Move(0), IsFalse)
     c.Expect(game.current, Equals, A)
   })
+
+  c.Specify("detects a win from matching row", func() {
+    game := NewGame()
+    game.Move(0)
+    game.Move(0)
+    game.Move(1)
+    game.Move(1)
+    game.Move(2)
+    game.Move(2)
+    c.Expect(game.IsWin(), IsNil)
+    game.Move(3)
+    c.Expect(game.IsWin(), Not(IsNil))
+  })
 }
 
