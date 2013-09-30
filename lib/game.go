@@ -64,6 +64,10 @@ func (game *Game) CheckMarkerAt(index *Index, marker Marker) bool {
   return game.IndexValid(index) && game.MarkerAt(index) == marker
 }
 
+func (game *Game) HasMoves() bool {
+  return game.board.HasMoves()
+}
+
 func IndexInDirection(index *Index, dir *Direction) *Index {
   if index == nil || dir == nil { 
     return nil
@@ -156,7 +160,6 @@ func (game *Game) ToString() string {
     header = fmt.Sprintf("%s%d", header, j)
   }
   header += "\n"
-  fmt.Printf("Board height = %d", board.height)
   for i := 0; i < board.height; i ++ {
     str := fmt.Sprintf("%d ", i)
     for j := 0; j < board.width; j ++ {
