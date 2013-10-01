@@ -1,12 +1,11 @@
-package main
+package connect_four
 
 import (
   "fmt"
-  "github.com/jamiely/connect_four/lib"
 )
 
-func main() {
-  game := connect_four.NewGame()
+func console_ui() {
+  game := NewGame()
   var column int
   someoneWon := false
   hasMoves := true
@@ -26,3 +25,4 @@ func main() {
     fmt.Printf("There are no moves left")
   }
 }
+
