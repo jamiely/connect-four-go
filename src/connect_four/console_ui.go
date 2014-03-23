@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func console_ui() {
+func ConsoleUI() {
 	game := NewGame()
 	var column int
 	someoneWon := false
@@ -25,3 +25,4 @@ func console_ui() {
 		fmt.Printf("There are no moves left")
 	}
 }
+
