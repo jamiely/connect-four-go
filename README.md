@@ -10,11 +10,26 @@ learning a new language.
 Usage
 =====
 
-To run the application, execute:
+If your `GOPATH` is not set, then make sure to set it to something like
+`$HOME/gopath`.
 
-```bash
-GOPATH=`pwd` go run run.go
+To run use the package, create a go program `run.go` like:
+
+```go
+package main
+
+import (
+  . "github.com/jamiely/connect-four-go"
+)
+
+func main() {
+  ConsoleUI()
+}
 ```
+
+Install the package using `go get github.com/jamiely/connect-four-go`.
+
+Then, run the go application via: `go run run.go`
 
 To test the application, execute:
 
